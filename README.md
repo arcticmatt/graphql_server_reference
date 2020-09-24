@@ -6,6 +6,20 @@ An example GraphQL server implemented using the reference JavaScript implementat
 
 This repository is based on https://github.com/arcticmatt/graphql_server_base.
 
-## Run the code
+## Yarn scripts
 
-Run it with `node index.js`. Then go to http://localhost:4000/graphql to run queries.
+### Running the code
+
+Run the server with `yarn start`. Since we're using `ts-node-dev`, the server will be restarted when any relevant changes are made. Then go to http://localhost:4000/graphql to run queries.
+
+### Testing the code
+
+TODO should test with jest.
+
+### Typechecking the code
+
+Run `yarn tsc`.
+
+### Linting the code
+
+Run `yarn eslint`.
