@@ -31,6 +31,12 @@ export type Droid = {
   primaryFunction: string;
 };
 
+type SumInput = {
+  one: number;
+  two: number;
+  three: number;
+};
+
 /**
  * This defines a basic set of data for our Star Wars Schema.
  *
@@ -155,4 +161,11 @@ export function getHuman(id: string): Human | null {
  */
 export function getDroid(id: string): Droid | null {
   return droidData[id];
+}
+
+export function getHumanOrDroid(input: SumInput): Human | Droid {
+  if ((input.one + input.two + input.three) % 2 === 0) {
+    return humanData[Object.keys(humanData)[0]];
+  }
+  return droidData[Object.keys(droidData)[0]];
 }

@@ -4,14 +4,23 @@
 
 import {
   GraphQLEnumType,
+  GraphQLInputObjectType,
+  GraphQLInt,
   GraphQLInterfaceType,
   GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLSchema,
   GraphQLString,
+  GraphQLUnionType,
 } from "graphql";
-import { getDroid, getFriends, getHero, getHuman } from "./StarWarsData";
+import {
+  getDroid,
+  getFriends,
+  getHero,
+  getHuman,
+  getHumanOrDroid,
+} from "./StarWarsData";
 
 import invariant from "invariant";
 
@@ -44,10 +53,19 @@ import invariant from "invariant";
  *   primaryFunction: String
  * }
  *
+ * input SumInput {
+ *   one: Int!
+ *   two: Int!
+ *   three: Int!
+ * }
+ *
+ * union HumanOrDroid = Human | Droid
+ *
  * type Query {
  *   hero(episode: Episode): Character
  *   human(id: String!): Human
  *   droid(id: String!): Droid
+ *   humanOrDroid(input: SumInput!): HumanOrDroid
  * }
  */
 
@@ -183,6 +201,40 @@ const droidType = new GraphQLObjectType({
   interfaces: [characterInterface],
 });
 
+const sumInput = new GraphQLInputObjectType({
+  name: "SumInput",
+  fields: {
+    one: {
+      type: new GraphQLNonNull(GraphQLInt),
+      description: "An arbitrary integer.",
+    },
+    two: {
+      type: new GraphQLNonNull(GraphQLInt),
+      description: "An arbitrary integer.",
+    },
+    three: {
+      type: new GraphQLNonNull(GraphQLInt),
+      description: "An arbitrary integer.",
+    },
+  },
+});
+
+const humanOrDroid = new GraphQLUnionType({
+  name: "HumanOrDroid",
+  types: [humanType, droidType],
+  resolveType(character) {
+    switch (character.type) {
+      case "Human":
+        return humanType.name;
+      case "Droid":
+        return droidType.name;
+    }
+
+    // istanbul ignore next (Not reachable. All possible types have been considered)
+    invariant(false, "throw");
+  },
+});
+
 const queryType = new GraphQLObjectType({
   name: "Query",
   fields: () => ({
@@ -216,6 +268,15 @@ const queryType = new GraphQLObjectType({
         },
       },
       resolve: (_source, { id }) => getDroid(id),
+    },
+    humanOrDroid: {
+      type: humanOrDroid,
+      args: {
+        input: {
+          type: sumInput,
+        },
+      },
+      resolve: (_source, { input }) => getHumanOrDroid(input),
     },
   }),
 });
