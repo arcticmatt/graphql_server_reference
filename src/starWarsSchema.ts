@@ -3,6 +3,16 @@
  */
 
 import {
+  Character,
+  Droid,
+  Human,
+  getDroid,
+  getFriends,
+  getHero,
+  getHuman,
+  getHumanOrDroid,
+} from "./StarWarsData";
+import {
   GraphQLEnumType,
   GraphQLInputObjectType,
   GraphQLInt,
@@ -14,13 +24,6 @@ import {
   GraphQLString,
   GraphQLUnionType,
 } from "graphql";
-import {
-  getDroid,
-  getFriends,
-  getHero,
-  getHuman,
-  getHumanOrDroid,
-} from "./StarWarsData";
 
 import invariant from "invariant";
 
@@ -156,7 +159,7 @@ const humanType = new GraphQLObjectType({
     secretBackstory: {
       type: GraphQLString,
       description: "Where are they from and how they came to be who they are.",
-      resolve() {
+      resolve(): string | null {
         throw new Error("secretBackstory is secret.");
       },
     },
@@ -189,7 +192,7 @@ const droidType = new GraphQLObjectType({
     secretBackstory: {
       type: GraphQLString,
       description: "Construction date and the name of the designer.",
-      resolve() {
+      resolve(): string | null {
         throw new Error("secretBackstory is secret.");
       },
     },
@@ -247,7 +250,7 @@ const queryType = new GraphQLObjectType({
           type: episodeEnum,
         },
       },
-      resolve: (_source, { episode }) => getHero(episode),
+      resolve: (_source, { episode }): Character => getHero(episode),
     },
     human: {
       type: humanType,
@@ -257,7 +260,7 @@ const queryType = new GraphQLObjectType({
           type: new GraphQLNonNull(GraphQLString),
         },
       },
-      resolve: (_source, { id }) => getHuman(id),
+      resolve: (_source, { id }): Human | null => getHuman(id),
     },
     droid: {
       type: droidType,
@@ -267,7 +270,7 @@ const queryType = new GraphQLObjectType({
           type: new GraphQLNonNull(GraphQLString),
         },
       },
-      resolve: (_source, { id }) => getDroid(id),
+      resolve: (_source, { id }): Droid | null => getDroid(id),
     },
     humanOrDroid: {
       type: humanOrDroid,
@@ -276,7 +279,9 @@ const queryType = new GraphQLObjectType({
           type: sumInput,
         },
       },
-      resolve: (_source, { input }) => getHumanOrDroid(input),
+      resolve(_source, { input }): Human | Droid {
+        return getHumanOrDroid(input);
+      },
     },
   }),
 });
