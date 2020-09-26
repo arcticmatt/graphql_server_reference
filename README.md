@@ -14,7 +14,7 @@ Run the server with `yarn start`. Since we're using `ts-node-dev`, the server wi
 
 ### Testing the code
 
-TODO should test with jest.
+Run `yarn jest`.
 
 ### Typechecking the code
 
