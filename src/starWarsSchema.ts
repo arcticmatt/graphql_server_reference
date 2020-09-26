@@ -276,7 +276,7 @@ const queryType = new GraphQLObjectType({
       type: humanOrDroid,
       args: {
         input: {
-          type: sumInput,
+          type: GraphQLNonNull(sumInput),
         },
       },
       resolve(_source, { input }): Human | Droid {
