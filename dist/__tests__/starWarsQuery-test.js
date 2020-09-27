@@ -6,6 +6,47 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_1 = require("graphql");
 const starWarsSchema_1 = __importDefault(require("../starWarsSchema"));
 describe("Star Wars Query Tests", () => {
+    // I added this.
+    describe("Custom", () => {
+        it("Gets a human from humanOrDroid", async () => {
+            const source = `
+        query HumanOrDroid {
+          humanOrDroid(input: { one: 1, two: 2, three: 3 }) {
+            ... on Human {
+              name
+            }
+          }
+        }
+      `;
+            const result = await graphql_1.graphql({ schema: starWarsSchema_1.default, source });
+            expect(result).toEqual({
+                data: {
+                    humanOrDroid: {
+                        name: "Luke Skywalker",
+                    },
+                },
+            });
+        });
+        it("Gets a droid from humanOrDroid", async () => {
+            const source = `
+        query HumanOrDroid {
+          humanOrDroid(input: { one: 1, two: 2, three: 2 }) {
+            ... on Droid {
+              name
+            }
+          }
+        }
+      `;
+            const result = await graphql_1.graphql({ schema: starWarsSchema_1.default, source });
+            expect(result).toEqual({
+                data: {
+                    humanOrDroid: {
+                        name: "C-3PO",
+                    },
+                },
+            });
+        });
+    });
     describe("Basic Queries", () => {
         it("Correctly identifies R2-D2 as the hero of the Star Wars Saga", async () => {
             const source = `

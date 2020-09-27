@@ -1,7 +1,7 @@
-import { Character, getHero } from "../StarWarsData";
-
+import { Character } from "../../data/types/Character";
 import character from "../character";
 import episode from "../episode";
+import getHero from "../../data/getHero";
 
 const heroQueryField = {
   type: character,

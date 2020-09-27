@@ -1,7 +1,8 @@
-import { Droid, getDroid } from "../StarWarsData";
 import { GraphQLNonNull, GraphQLString } from "graphql";
 
+import { Droid } from "../../data/types/Droid";
 import droid from "../droid";
+import { getDroid } from "../../data/getDroid";
 
 const droidQueryField = {
   type: droid,
@@ -13,4 +14,5 @@ const droidQueryField = {
   },
   resolve: (_source: any, args: any): Droid | null => getDroid(args.id),
 };
+
 export default droidQueryField;

@@ -1,6 +1,7 @@
 import { GraphQLNonNull, GraphQLString } from "graphql";
-import { Human, getHuman } from "../StarWarsData";
 
+import { Human } from "../../data/types/Human";
+import getHuman from "../../data/getHuman";
 import human from "../human";
 
 const humanQueryField = {

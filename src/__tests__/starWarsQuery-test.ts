@@ -1,6 +1,6 @@
 import { graphql, graphqlSync } from "graphql";
 
-import { default as schema } from "../starWarsSchema";
+import { default as schema } from "../schema/starWarsSchema";
 
 describe("Star Wars Query Tests", () => {
   // I added this.

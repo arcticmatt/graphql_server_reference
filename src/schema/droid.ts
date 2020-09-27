@@ -7,7 +7,7 @@ import {
 
 import character from "./character";
 import episode from "./episode";
-import { getFriends } from "./StarWarsData";
+import getFriends from "../data/getFriends";
 
 const droid = new GraphQLObjectType({
   name: "Droid",

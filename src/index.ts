@@ -1,5 +1,5 @@
 import { ApolloServer } from "apollo-server";
-import starWarsSchema from "./starWarsSchema";
+import starWarsSchema from "./schema/starWarsSchema";
 
 const server = new ApolloServer({ schema: starWarsSchema });
 
