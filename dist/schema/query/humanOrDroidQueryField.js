@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_1 = require("graphql");
-const getHumanOrDroid_1 = require("../../data/types/getHumanOrDroid");
+const getHumanOrDroid_1 = require("../../data/getHumanOrDroid");
 const humanOrDroid_1 = __importDefault(require("../humanOrDroid"));
 const sumInput_1 = __importDefault(require("../sumInput"));
 const humanOrDroidQueryField = {
@@ -14,8 +14,8 @@ const humanOrDroidQueryField = {
             type: graphql_1.GraphQLNonNull(sumInput_1.default),
         },
     },
-    resolve(_source, args) {
-        return getHumanOrDroid_1.getHumanOrDroid(args.input);
+    resolve(_source, { input }) {
+        return getHumanOrDroid_1.getHumanOrDroid(input);
     },
 };
 exports.default = humanOrDroidQueryField;

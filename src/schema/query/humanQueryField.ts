@@ -12,7 +12,8 @@ const humanQueryField = {
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  resolve: (_source: any, args: any): Human | null => getHuman(args.id),
+  resolve: (_source: unknown, { id }: { id?: string }): Human | null =>
+    getHuman(id!),
 };
 
 export default humanQueryField;

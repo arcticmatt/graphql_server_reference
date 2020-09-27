@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_1 = require("graphql");
 const droid_1 = __importDefault(require("../droid"));
-const getDroid_1 = require("../../data/types/getDroid");
+const getDroid_1 = require("../../data/getDroid");
 const droidQueryField = {
     type: droid_1.default,
     args: {
@@ -14,6 +14,6 @@ const droidQueryField = {
             type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLString),
         },
     },
-    resolve: (_source, args) => getDroid_1.getDroid(args.id),
+    resolve: (_source, { id }) => getDroid_1.getDroid(id),
 };
 exports.default = droidQueryField;

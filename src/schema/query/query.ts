@@ -6,12 +6,12 @@ import humanQueryField from "./humanQueryField";
 
 const query = new GraphQLObjectType({
   name: "Query",
-  fields: () => ({
+  fields: {
     hero: heroQueryField,
     human: humanQueryField,
     droid: droidQueryField,
     humanOrDroid: humanOrDroidQueryField,
-  }),
+  },
 });
 
 export default query;

@@ -12,8 +12,8 @@ const heroQueryField = {
       type: episode,
     },
   },
-  resolve: (_source: any, args: any): Character => {
-    return getHero(args.episode);
+  resolve: (_source: unknown, { episode }: { episode?: number }): Character => {
+    return getHero(episode);
   },
 };
 

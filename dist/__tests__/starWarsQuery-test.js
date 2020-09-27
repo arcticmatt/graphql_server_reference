@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_1 = require("graphql");
-const starWarsSchema_1 = __importDefault(require("../starWarsSchema"));
+const starWarsSchema_1 = __importDefault(require("../schema/starWarsSchema"));
 describe("Star Wars Query Tests", () => {
     // I added this.
     describe("Custom", () => {

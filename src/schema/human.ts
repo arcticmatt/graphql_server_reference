@@ -12,7 +12,7 @@ import getFriends from "../data/getFriends";
 const human = new GraphQLObjectType({
   name: "Human",
   description: "A humanoid creature in the Star Wars universe.",
-  fields: () => ({
+  fields: {
     id: {
       type: new GraphQLNonNull(GraphQLString),
       description: "The id of the human.",
@@ -42,7 +42,7 @@ const human = new GraphQLObjectType({
         throw new Error("secretBackstory is secret.");
       },
     },
-  }),
+  },
   interfaces: [character],
 });
 

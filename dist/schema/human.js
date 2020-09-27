@@ -10,7 +10,7 @@ const getFriends_1 = __importDefault(require("../data/getFriends"));
 const human = new graphql_1.GraphQLObjectType({
     name: "Human",
     description: "A humanoid creature in the Star Wars universe.",
-    fields: () => ({
+    fields: {
         id: {
             type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLString),
             description: "The id of the human.",
@@ -39,7 +39,7 @@ const human = new graphql_1.GraphQLObjectType({
                 throw new Error("secretBackstory is secret.");
             },
         },
-    }),
+    },
     interfaces: [character_1.default],
 });
 exports.default = human;

@@ -10,7 +10,7 @@ const getFriends_1 = __importDefault(require("../data/getFriends"));
 const droid = new graphql_1.GraphQLObjectType({
     name: "Droid",
     description: "A mechanical creature in the Star Wars universe.",
-    fields: () => ({
+    fields: {
         id: {
             type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLString),
             description: "The id of the droid.",
@@ -39,7 +39,7 @@ const droid = new graphql_1.GraphQLObjectType({
             type: graphql_1.GraphQLString,
             description: "The primary function of the droid.",
         },
-    }),
+    },
     interfaces: [character_1.default],
 });
 exports.default = droid;

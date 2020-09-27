@@ -12,7 +12,7 @@ import getFriends from "../data/getFriends";
 const droid = new GraphQLObjectType({
   name: "Droid",
   description: "A mechanical creature in the Star Wars universe.",
-  fields: () => ({
+  fields: {
     id: {
       type: new GraphQLNonNull(GraphQLString),
       description: "The id of the droid.",
@@ -42,7 +42,7 @@ const droid = new GraphQLObjectType({
       type: GraphQLString,
       description: "The primary function of the droid.",
     },
-  }),
+  },
   interfaces: [character],
 });
 

@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_1 = require("graphql");
-const getHuman_1 = __importDefault(require("../../data/types/getHuman"));
+const getHuman_1 = __importDefault(require("../../data/getHuman"));
 const human_1 = __importDefault(require("../human"));
 const humanQueryField = {
     type: human_1.default,
@@ -14,6 +14,6 @@ const humanQueryField = {
             type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLString),
         },
     },
-    resolve: (_source, args) => getHuman_1.default(args.id),
+    resolve: (_source, { id }) => getHuman_1.default(id),
 };
 exports.default = humanQueryField;

@@ -10,11 +10,11 @@ const humanOrDroidQueryField_1 = __importDefault(require("./humanOrDroidQueryFie
 const humanQueryField_1 = __importDefault(require("./humanQueryField"));
 const query = new graphql_1.GraphQLObjectType({
     name: "Query",
-    fields: () => ({
+    fields: {
         hero: heroQueryField_1.default,
         human: humanQueryField_1.default,
         droid: droidQueryField_1.default,
         humanOrDroid: humanOrDroidQueryField_1.default,
-    }),
+    },
 });
 exports.default = query;

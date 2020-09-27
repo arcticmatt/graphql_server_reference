@@ -14,8 +14,8 @@ const heroQueryField = {
             type: episode_1.default,
         },
     },
-    resolve: (_source, args) => {
-        return getHero_1.default(args.episode);
+    resolve: (_source, { episode }) => {
+        return getHero_1.default(episode);
     },
 };
 exports.default = heroQueryField;
