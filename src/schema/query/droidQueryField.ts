@@ -12,8 +12,7 @@ const droidQueryField = {
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  resolve: (_source: unknown, { id }: { id?: string }): Droid | null =>
-    getDroid(id!),
+  resolve: (_source: unknown, { id }: { id?: string }): Droid => getDroid(id!),
 };
 
 export default droidQueryField;
